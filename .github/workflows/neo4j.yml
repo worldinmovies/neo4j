@@ -65,6 +65,8 @@ jobs:
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,name=seppaleinen/worldinmovies_neo4j,push-by-digest=true,name-canonical=true,push=true
+          cache-from: type=registry,ref=seppaleinen/worldinmovies_neo4j:latest
+          cache-to: type=inline
       - name: Export digest
         run: |
           mkdir -p /tmp/digests
@@ -129,4 +131,4 @@ jobs:
           propagate_failure: true
           trigger_workflow: true
           wait_workflow: true
-          comment_downstream_url: Triggered by IMDB Workflow
+          comment_downstream_url: Triggered by Neo4J Workflow
